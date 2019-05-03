@@ -88,7 +88,6 @@ public class Game implements Runnable {
 			lastTime = now;
 			
 			if (delta >= 1) {
-				System.out.println("60fps");
 				move();  //пересчет объектов
 				render();  //перерисовка объектов
 				delta--;
