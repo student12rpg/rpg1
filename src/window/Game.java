@@ -1,5 +1,8 @@
 package window;
 
+import entity.Player;
+import manage.KeyManager;
+
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -18,6 +21,9 @@ public class Game implements Runnable {
 	
 	private boolean running = false;
 
+	public KeyManager keyManager;
+
+	Player player = new Player(this, 30,30);
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -28,12 +34,14 @@ public class Game implements Runnable {
 	//!!!!!Инициализация
 	private void init() {
 		display = new Display(this.title, width, height);
+		keyManager = new KeyManager();
+		display.getJFrame().addKeyListener(keyManager);
 	}
 
 	//!!!ОБНОВЛЕНИЕ
 	private void move() {
 
-
+		player.move();
 	}
 
 	//!!ПРОРИСОВКА
@@ -49,7 +57,7 @@ public class Game implements Runnable {
 		///////////////////////////////////////////////////////////////
 		g.clearRect(0, 0, width, height);
 
-		g.drawRect(10,0,50,50);
+		player.render(g);
 
 
 
