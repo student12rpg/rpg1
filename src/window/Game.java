@@ -2,6 +2,7 @@ package window;
 
 import entity.Player;
 import manage.KeyManager;
+import world.Level1;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -24,7 +25,8 @@ public class Game implements Runnable {
 	public KeyManager keyManager;
 
 	Player player = new Player(this, 30,30);
-	
+	Level1 level1 = new Level1();
+
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -41,6 +43,7 @@ public class Game implements Runnable {
 	//!!!ОБНОВЛЕНИЕ
 	private void move() {
 
+		level1.move();
 		player.move();
 	}
 
@@ -57,6 +60,7 @@ public class Game implements Runnable {
 		///////////////////////////////////////////////////////////////
 		g.clearRect(0, 0, width, height);
 
+		level1.render(g);
 		player.render(g);
 
 
