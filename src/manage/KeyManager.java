@@ -25,9 +25,9 @@ public class KeyManager implements KeyListener {
     }
 
     private void setVariable(){
-        isRight = keys[KeyEvent.VK_RIGHT];
-        isLeft = keys[KeyEvent.VK_LEFT];
-        isUP = keys[KeyEvent.VK_UP];
-        isDown = keys[KeyEvent.VK_DOWN];
+        isRight = keys[KeyEvent.VK_D];
+        isLeft = keys[KeyEvent.VK_A];
+        isUP = keys[KeyEvent.VK_W];
+        isDown = keys[KeyEvent.VK_S];
     }
 }

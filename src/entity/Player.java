@@ -2,16 +2,28 @@ package entity;
 
 import window.Game;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Player extends GameObject{
 
     int width, height;
+    BufferedImage image;
 
     public Player(Game game, int x, int y){
         super(game,x,y); //вызывает конструктор GameObject
-        this.width = 32;
-        this.height = 32;
+        this.width = 64;
+        this.height = 64;
+
+        try {
+            image = ImageIO.read(new File("images/player.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -36,6 +48,7 @@ public class Player extends GameObject{
 
     @Override
     public void render(Graphics g) {
-        g.fillRect(x,y,width,height);
+        //g.fillRect(x,y,width,height);
+        g.drawImage(image.getSubimage(48,0,48,48),x,y,width,height,null);
     }
 }

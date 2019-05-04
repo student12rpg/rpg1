@@ -1,6 +1,7 @@
 package window;
 
 import entity.Player;
+import entity.Tree;
 import manage.KeyManager;
 
 import java.awt.Graphics;
@@ -24,6 +25,7 @@ public class Game implements Runnable {
 	public KeyManager keyManager;
 
 	Player player = new Player(this, 30,30);
+	Tree tree = new Tree(this,100,60);
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -58,6 +60,7 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 
 		player.render(g);
+		tree.render(g);
 
 
 
