@@ -8,6 +8,9 @@ public class GameObject {
 
     public Game game;
 
+    public int width;
+    public int height;
+
     public int x, y; //текущая позиция объекта
     public RpgObjectType id; //идентификатор, характеризующий объект (дерево, игрок, пуля, бос)
 

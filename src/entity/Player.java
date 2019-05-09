@@ -47,6 +47,29 @@ public class Player extends GameObject{
 
         x = x + deltX;
         y = y + deltY;
+
+        checkRpgObjects();
+    }
+
+    public void checkRpgObjects(){
+
+        boolean nextLevel = false;
+
+        for (GameObject item : game.listRpgObjects){
+            int obj_left = item.x;
+            int obj_right = item.x + item.width;
+            int obj_top = item.y;
+            int obj_bottom = item.y + item.height;
+
+            boolean xcoll = ((x<obj_right) && ((x+width)>obj_left));
+            boolean ycoll = ((y+5<obj_bottom) && ((y+height-2)>obj_top));
+
+            if (xcoll && ycoll) {
+                nextLevel = true;
+            }
+        }
+
+        if (nextLevel == true) game.level.nextLevel();
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Level {
     public int count_tile_width = 8;
     public int count_tile_height = 8;
 
-    public int currentLevel = 0;
+    public int currentLevel = 1;
 
     BufferedImage image;
 
@@ -41,6 +41,11 @@ public class Level {
         tiles[1] = new Tile(image.getSubimage(64,0,64,64),1, true);
 
         changeLevel(1);
+    }
+
+    public void nextLevel(){
+        currentLevel++;
+        changeLevel(currentLevel);
     }
 
     public void changeLevel(int level){
