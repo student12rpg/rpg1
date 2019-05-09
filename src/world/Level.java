@@ -100,7 +100,7 @@ public class Level {
         //  tiles[0].render(g,100,100);
         for (int y=0; y<count_tile_height; y++){
             for (int x=0; x<count_tile_width; x++){
-                tiles[map[y][x]].render(g, x*64, y*64);
+                tiles[map[y][x]].render(g, (x*64)-game.offsetX, (y*64)-game.offsetY);
             }
         }
     }

@@ -31,6 +31,6 @@ public class Tree extends GameObject {
     }
 
     public void render(Graphics g){
-        g.drawImage(image.getSubimage(480,30,32,65),x,y,width,height,null);
+        g.drawImage(image.getSubimage(480,30,32,65),x-game.offsetX,y-game.offsetY,width,height,null);
     }
 }

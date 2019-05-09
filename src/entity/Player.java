@@ -52,6 +52,8 @@ public class Player extends GameObject{
         y = y + deltY;
 
         checkRpgObjects();
+
+        game.centerPlayer(x,y);
     }
 
     public void checkCollision(int testX, int testY){
@@ -112,6 +114,6 @@ public class Player extends GameObject{
     @Override
     public void render(Graphics g) {
         //g.fillRect(x,y,width,height);
-        g.drawImage(image.getSubimage(48,0,48,48),x,y,width,height,null);
+        g.drawImage(image.getSubimage(48,0,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
     }
 }

@@ -32,6 +32,14 @@ public class Game implements Runnable {
 	public Player player = new Player(this, 10,10);
 	//Tree tree = new Tree(this,100,350);
 	public Level level = new Level(this);
+
+	public int offsetX = 0;
+	public int offsetY = 0;
+
+	public void centerPlayer(int x, int y){
+		offsetX = x - width/2;
+		offsetY = y - height/2;
+	}
 	
 	public Game(String title, int width, int height) {
 		this.width = width;

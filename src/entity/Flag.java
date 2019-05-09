@@ -29,6 +29,6 @@ public class Flag extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(image.getSubimage(161,195,32,56),x,y,width,height,null);
+        g.drawImage(image.getSubimage(161,195,32,56),x-game.offsetX,y-game.offsetY,width,height,null);
     }
 }
