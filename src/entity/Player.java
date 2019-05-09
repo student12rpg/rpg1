@@ -34,11 +34,14 @@ public class Player extends GameObject{
 
         if (game.keyManager.isRight){
             deltX = 3;
-        } else if (game.keyManager.isLeft){
+        }
+        if (game.keyManager.isLeft){
             deltX = -3;
-        } else if (game.keyManager.isUP){
+        }
+        if (game.keyManager.isUP){
             deltY = -3;
-        } else if (game.keyManager.isDown){
+        }
+        if (game.keyManager.isDown){
             deltY = 3;
         }
 
