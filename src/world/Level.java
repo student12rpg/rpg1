@@ -1,5 +1,9 @@
 package world;
 
+import entity.Flag;
+import entity.Tree;
+import window.Game;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,7 +23,11 @@ public class Level {
 
     public int[][] map = new int[count_tile_height][count_tile_width];
 
-    public Level(){
+    Game game;
+
+    public Level(Game game){
+
+        this.game = game;
 
         try {
             image = ImageIO.read(new File("images/Tiles.png"));
@@ -32,13 +40,20 @@ public class Level {
         //id=1 стена
         tiles[1] = new Tile(image.getSubimage(64,0,64,64),1, true);
 
-        changeLevel(2);
+        changeLevel(1);
     }
 
     public void changeLevel(int level){
 
+        game.listRpgObjects.clear();
+
         if (level == 1)
         {
+            //добавление объектов уровня 1
+            game.listRpgObjects.add(new Tree(game, 100, 350));
+            game.listRpgObjects.add(new Tree(game, 400, 50));
+            game.listRpgObjects.add(new Flag(game, 330, 460));
+
             int[][] map1 = {
                     {0, 0, 0, 0, 1, 0, 0, 0},
                     {0, 0, 1, 0, 0, 0, 0, 0},

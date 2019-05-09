@@ -1,5 +1,6 @@
 package window;
 
+import entity.GameObject;
 import entity.Player;
 import entity.Tree;
 import manage.KeyManager;
@@ -7,6 +8,7 @@ import world.Level;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 
 public class Game implements Runnable {
@@ -25,9 +27,11 @@ public class Game implements Runnable {
 
 	public KeyManager keyManager;
 
-	Player player = new Player(this, 10,10);
-	Tree tree = new Tree(this,100,350);
-	Level level = new Level();
+	public ArrayList<GameObject> listRpgObjects = new ArrayList<GameObject>();
+
+	public Player player = new Player(this, 10,10);
+	//Tree tree = new Tree(this,100,350);
+	public Level level = new Level(this);
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -45,7 +49,10 @@ public class Game implements Runnable {
 	//!!!ОБНОВЛЕНИЕ
 	private void move() {
 		level.move();
-		tree.move();
+		//tree.move();
+		for (GameObject item : listRpgObjects) {
+			item.move();
+		}
 		player.move();
 	}
 
@@ -63,11 +70,11 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 
 		level.render(g);
-		tree.render(g);
+		//tree.render(g);
+		for (GameObject item : listRpgObjects) {
+			item.render(g);
+		}
 		player.render(g);
-
-
-
 
 		///////////////////////////////////////////////////////////////
 
