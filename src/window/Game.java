@@ -3,7 +3,7 @@ package window;
 import entity.Player;
 import entity.Tree;
 import manage.KeyManager;
-import world.Level1;
+import world.Level;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -27,7 +27,7 @@ public class Game implements Runnable {
 
 	Player player = new Player(this, 10,10);
 	Tree tree = new Tree(this,100,350);
-	Level1 level1 = new Level1();
+	Level level = new Level();
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -44,7 +44,7 @@ public class Game implements Runnable {
 
 	//!!!ОБНОВЛЕНИЕ
 	private void move() {
-		level1.move();
+		level.move();
 		tree.move();
 		player.move();
 	}
@@ -62,7 +62,7 @@ public class Game implements Runnable {
 		///////////////////////////////////////////////////////////////
 		g.clearRect(0, 0, width, height);
 
-		level1.render(g);
+		level.render(g);
 		tree.render(g);
 		player.render(g);
 
