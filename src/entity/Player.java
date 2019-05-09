@@ -1,6 +1,7 @@
 package entity;
 
 import window.Game;
+import world.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -45,11 +46,45 @@ public class Player extends GameObject{
             deltY = 3;
         }
 
+        checkCollision(x + deltX, y + deltY);
+
         x = x + deltX;
         y = y + deltY;
 
         checkRpgObjects();
     }
+
+    public void checkCollision(int testX, int testY){
+
+        boolean isCollision = false;
+        int index_tile = 0;
+
+        for (int i=0; i<game.level.count_tile_height;i++){
+            for (int j=0; j<game.level.count_tile_width; j++) {
+                index_tile = game.level.map[i][j];
+                Tile tile = game.level.tiles[index_tile];
+                if (tile.isBlock) {
+                    int obj_left = j * tile.TILE_WIDTH;
+                    int obj_right = obj_left + tile.TILE_WIDTH;
+                    int obj_top = i * tile.TILE_HEIGHT;
+                    int obj_bottom = obj_top + tile.TILE_HEIGHT;
+
+                    boolean xcoll = ((testX+10<obj_right) && ((testX+width-10)>obj_left));
+                    boolean ycoll = ((testY+7<obj_bottom) && ((testY+height)>obj_top));
+
+                    if (xcoll && ycoll) {
+                        isCollision = true;
+                    }
+                }
+            }
+        }
+
+        if (isCollision){
+            deltY = 0;
+            deltX = 0;
+        }
+    }
+
 
     public void checkRpgObjects(){
 
@@ -65,7 +100,9 @@ public class Player extends GameObject{
             boolean ycoll = ((y+5<obj_bottom) && ((y+height-2)>obj_top));
 
             if (xcoll && ycoll) {
-                nextLevel = true;
+                if (item.id == RpgObjectType.FLAG) {
+                    nextLevel = true;
+                }
             }
         }
 
