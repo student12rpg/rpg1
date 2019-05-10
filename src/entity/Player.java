@@ -51,6 +51,11 @@ public class Player extends GameObject{
         x = x + deltX;
         y = y + deltY;
 
+        if (x<0) x = 0;
+        if (y<0) y = 0;
+        if (x>(game.level.count_tile_width-1)*64) x = (game.level.count_tile_width-1)*64;
+        if (y>(game.level.count_tile_height-1)*64) y = (game.level.count_tile_height-1)*64;
+
         checkRpgObjects();
 
         game.centerPlayer(x,y);
@@ -104,6 +109,12 @@ public class Player extends GameObject{
             if (xcoll && ycoll) {
                 if (item.id == RpgObjectType.FLAG) {
                     nextLevel = true;
+                }
+
+                //если комната закрыта - включить свет
+                if (item.id == RpgObjectType.LOSE) {
+                    System.out.println("here");
+                    ((Lose)item).isLigth = true;
                 }
             }
         }

@@ -6,7 +6,7 @@ import entity.Tree;
 import manage.KeyManager;
 import world.Level;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class Game implements Runnable {
 
 	public ArrayList<GameObject> listRpgObjects = new ArrayList<GameObject>();
 
-	public Player player = new Player(this, 10,10);
+	public Player player = new Player(this, 300,300);
 	//Tree tree = new Tree(this,100,350);
 	public Level level = new Level(this);
 
@@ -76,6 +76,8 @@ public class Game implements Runnable {
 		//Рисуем!!!
 		///////////////////////////////////////////////////////////////
 		g.clearRect(0, 0, width, height);
+		g.setColor(Color.black);
+		g.fillRect(0,0,width,height);
 
 		level.render(g);
 		//tree.render(g);
