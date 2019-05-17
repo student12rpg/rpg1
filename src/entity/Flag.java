@@ -8,29 +8,27 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Tree extends GameObject {
-
-    int width, height;
+public class Flag extends GameObject {
     BufferedImage image;
+    int width;
+    int height;
 
-    public Tree(Game game, int x, int y) {
+    public Flag(Game game, int x, int y) {
         super(game, x, y);
-        this.width=64;
-        this.height=128;
+        this.width = 40;
+        this.height = 40;
+
         try {
             image = ImageIO.read(new File("images/inventary.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        this.id = RpgObjectType.TREE;
+        this.id = RpgObjectType.FLAG;
     }
 
-    public void move(){
-
-    }
-
-    public void render(Graphics g){
-        g.drawImage(image.getSubimage(480,30,32,65),x-game.offsetX,y-game.offsetY,width,height,null);
+    @Override
+    public void render(Graphics g) {
+        g.drawImage(image.getSubimage(161,195,32,56),x-game.offsetX,y-game.offsetY,width,height,null);
     }
 }

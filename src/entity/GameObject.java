@@ -8,8 +8,11 @@ public class GameObject {
 
     public Game game;
 
+    public int width;
+    public int height;
+
     public int x, y; //текущая позиция объекта
-    public int id; //идентификатор, характеризующий объект (дерево, игрок, пуля, бос)
+    public RpgObjectType id; //идентификатор, характеризующий объект (дерево, игрок, пуля, бос)
 
     public int deltX = 0, deltY = 0;
 
