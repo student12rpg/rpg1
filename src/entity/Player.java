@@ -24,12 +24,17 @@ public class Player extends GameObject{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
     @Override
     public void move() {
+
+        if (game.mouseManager.isPressMouse){
+            game.listRpgObjects.add(new Star(game,x,y));
+            game.mouseManager.isPressMouse = false;
+        }
+
         this.deltX = 0;
         this.deltY = 0;
 
