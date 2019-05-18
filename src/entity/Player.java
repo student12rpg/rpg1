@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class Player extends GameObject{
 
+    boolean AnimFlag = false;
+
     int width, height;
     BufferedImage image;
 
@@ -128,7 +130,15 @@ public class Player extends GameObject{
 
     @Override
     public void render(Graphics g) {
-        //g.fillRect(x,y,width,height);
+        if (game.keyManager.isRight)
+            g.drawImage(image.getSubimage(0,96,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
+        else
+        if (game.keyManager.isLeft)
+            g.drawImage(image.getSubimage(0,48,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
+        else
+        if (game.keyManager.isUP)
+            g.drawImage(image.getSubimage(0,144,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
+        else //default
         g.drawImage(image.getSubimage(48,0,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
     }
 }
