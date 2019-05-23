@@ -16,8 +16,8 @@ public class Star extends GameObject {
 
     public Star(Game game, int x, int y) {
         super(game, x, y);
-        this.width = 64;
-        this.height = 64;
+        this.width = 32;
+        this.height = 32;
 
         try {
             image = ImageIO.read(new File("images/star.png"));
