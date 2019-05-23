@@ -13,6 +13,8 @@ public class Player extends GameObject{
 
     boolean AnimFlag = false;
 
+    int counter = 0;
+
     int width, height;
     BufferedImage image;
 
@@ -130,15 +132,25 @@ public class Player extends GameObject{
 
     @Override
     public void render(Graphics g) {
+
+        counter++;
+        if (counter == 30) counter = 0;
+        int m = (int)counter/10;
+
+        int ypos = 0;
         if (game.keyManager.isRight)
-            g.drawImage(image.getSubimage(0,96,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
-        else
-        if (game.keyManager.isLeft)
-            g.drawImage(image.getSubimage(0,48,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
-        else
-        if (game.keyManager.isUP)
-            g.drawImage(image.getSubimage(0,144,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
-        else //default
-        g.drawImage(image.getSubimage(48,0,48,48),x-game.offsetX,y-game.offsetY,width,height,null);
+            ypos = 96;
+        else if (game.keyManager.isLeft)
+            ypos = 48;
+        else if (game.keyManager.isUP)
+            ypos = 144;
+
+        if (m == 0)
+            g.drawImage(image.getSubimage(0, ypos, 48, 48), x - game.offsetX, y - game.offsetY, width, height, null);
+        else if (m == 1)
+            g.drawImage(image.getSubimage(48, ypos, 48, 48), x - game.offsetX, y - game.offsetY, width, height, null);
+        else if (m == 2)
+            g.drawImage(image.getSubimage(96, ypos, 48, 48), x - game.offsetX, y - game.offsetY, width, height, null);
+
     }
 }
