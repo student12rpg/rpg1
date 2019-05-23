@@ -22,7 +22,7 @@ public class Display {
 	public JFrame getJFrame(){
 		return frame;
 	}
-	
+
 	private void createDisplay() {
 		frame = new JFrame(title);
 		frame.setSize(width, height);

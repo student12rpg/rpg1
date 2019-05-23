@@ -1,8 +1,6 @@
 package world;
 
-import entity.Flag;
-import entity.Lose;
-import entity.Tree;
+import entity.*;
 import window.Game;
 
 import javax.imageio.ImageIO;
@@ -67,6 +65,11 @@ public class Level {
             game.listRpgObjects.add(new Flag(game, 540, 1100));
             //Артем - терь - тоже объект
             game.listRpgObjects.add(new Lose(game, 320, 764));
+            //враг
+            game.listRpgObjects.add(new Enemy(game,500,100));
+            game.listRpgObjects.add(new Enemy(game,1000,200));
+            game.listRpgObjects.add(new Enemy(game,100,500));
+
 
             int[][] map1 = {
                     {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -97,6 +100,12 @@ public class Level {
         {
             game.player.x = 400;
             game.player.y = 300;
+
+            //враг
+            game.listRpgObjects.add(new Enemy(game,500,100));
+            game.listRpgObjects.add(new Enemy(game,500,100));
+            game.listRpgObjects.add(new Enemy(game,1000,200));
+            game.listRpgObjects.add(new Enemy(game,100,500));
 
             int[][] map1 = {
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},

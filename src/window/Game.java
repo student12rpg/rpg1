@@ -4,9 +4,11 @@ import entity.GameObject;
 import entity.Player;
 import entity.Tree;
 import manage.KeyManager;
+import manage.MouseManager;
 import world.Level;
 
 import java.awt.*;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
@@ -26,8 +28,10 @@ public class Game implements Runnable {
 	private boolean running = false;
 
 	public KeyManager keyManager;
+	public MouseManager mouseManager;
 
 	public ArrayList<GameObject> listRpgObjects = new ArrayList<GameObject>();
+	public ArrayList<GameObject> listRemoveObjects = new ArrayList<>();
 
 	public Player player = new Player(this, 300,300);
 	//Tree tree = new Tree(this,100,350);
@@ -51,17 +55,26 @@ public class Game implements Runnable {
 	private void init() {
 		display = new Display(this.title, width, height);
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
+		display.getCanvas().addMouseListener(mouseManager);
 		display.getJFrame().addKeyListener(keyManager);
+
 	}
 
 	//!!!ОБНОВЛЕНИЕ
 	private void move() {
 		level.move();
-		//tree.move();
 		for (GameObject item : listRpgObjects) {
 			item.move();
 		}
 		player.move();
+
+		//удаление ненужных объектов
+		for (GameObject item : listRemoveObjects) {
+			listRpgObjects.remove(item);
+		}
+		//полная очистка кэша удаляемых объектов
+		listRemoveObjects.clear();
 	}
 
 	//!!ПРОРИСОВКА
