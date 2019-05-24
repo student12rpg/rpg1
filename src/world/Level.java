@@ -110,6 +110,12 @@ public class Level {
             game.listRpgObjects.add(new Enemy(game,1000,200));
             game.listRpgObjects.add(new Enemy(game,100,500));
 
+            game.listRpgObjects.add(new Stove(game,100,400));
+            game.listRpgObjects.add(new Stove(game,200,500));
+            game.listRpgObjects.add(new Stove(game,300,600));
+
+            game.listRpgObjects.add(new Flag(game, 540, 1100));
+
             int[][] map1 = {
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -136,7 +142,7 @@ public class Level {
             map = map1;
         } else //конец игры
         {
-
+            game.State = 3;
         }
     }
 

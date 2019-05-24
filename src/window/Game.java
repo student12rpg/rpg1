@@ -22,10 +22,11 @@ public class Game implements Runnable {
 	public int countStove = 0;
 
 	Image imgGame_Over;
+	Image imgWin;
+	public int State = 1; //0 - меню, 1 - игра, 2 - game over, 3 - win
 
 	boolean needStart = false;
 
-	public int State = 0; //0 - меню, 1 - игра, 2 - game over
 
 	private Display display;
 
@@ -70,6 +71,7 @@ public class Game implements Runnable {
 
 		try {
 			imgGame_Over = ImageIO.read(new File("images/gameover.png"));
+			imgWin = ImageIO.read(new File("images/win.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -157,7 +159,6 @@ public class Game implements Runnable {
 		}
 		else
 			if (State == 1) {
-
 				level.render(g);
 				//tree.render(g);
 				for (GameObject item : listRpgObjects) {
@@ -166,13 +167,14 @@ public class Game implements Runnable {
 				player.render(g);
 				panelInfo.render(g);
 			}
-		else
-			if (State == 2){
+		    else if (State == 2){
 				g.drawImage(imgGame_Over,0,0, width, height, null);
 			}
+			else
+				if (State == 3){
+					g.drawImage(imgWin,0,0, width, height, null);
+				}
 		///////////////////////////////////////////////////////////////
-
-
 		//end draw
 		bs.show();
 		g.dispose();
