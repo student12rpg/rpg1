@@ -28,7 +28,7 @@ public class PanelInfo {
         g.drawString("life: ", 30,40);
         g.drawRect(80,22, 100, 20);
 
-        //заливаем квадрат красным цветом
+        //заливаем квадрат краснdым цветом
         g.setColor(Color.RED);
         g.fillRect(81,23,99,19);
 
@@ -45,5 +45,8 @@ public class PanelInfo {
         g.drawString("Враги: "+game.countDiedEnemy, 200,40);
 
 
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arail",1,20));
+        g.drawString("Печки: "+game.countStove, 300,40);
     }
 }

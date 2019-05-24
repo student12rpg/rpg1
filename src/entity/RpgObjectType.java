@@ -6,5 +6,5 @@ public enum RpgObjectType {
     LOSE,
     ENEMY_ZOMBE, //враг - зомби,
     STAR,
-    MONEY
+    STOVE
 }

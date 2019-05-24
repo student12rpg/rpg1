@@ -131,7 +131,11 @@ public class Player extends GameObject{
                 //если совпали с врагом - уменьшаем жизнь
                 if (item.id == RpgObjectType.ENEMY_ZOMBE){
                     this.life = this.life - 0.2;
-                    System.out.println(life);
+                }
+
+                if (item.id == RpgObjectType.STOVE) {
+                    game.countStove++;
+                    game.listRemoveObjects.add(item);
                 }
             }
         }

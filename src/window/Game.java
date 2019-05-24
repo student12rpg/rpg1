@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class Game implements Runnable {
 
 	public int countDiedEnemy = 0;
+	public int countStove = 0;
 
 	Image imgGame_Over;
 
