@@ -51,6 +51,7 @@ public class Star extends GameObject {
 
             if (xcoll && ycoll) {
                 if (item.id == RpgObjectType.ENEMY_ZOMBE) {
+                    game.countDiedEnemy++;
                     game.listRemoveObjects.add(item); //для удаления объект
                     game.listRemoveObjects.add(this); //для удаления пули
                 }

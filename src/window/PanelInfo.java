@@ -39,5 +39,11 @@ public class PanelInfo {
             g.fillRect(81, 23, (int)game.player.life, 19);
         }
 
+        //кол-во убитых врагов
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Arail",1,20));
+        g.drawString("Враги: "+game.countDiedEnemy, 200,40);
+
+
     }
 }

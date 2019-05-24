@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class Game implements Runnable {
 
+	public int countDiedEnemy = 0;
+
 	Image imgGame_Over;
 
 	boolean needStart = false;
