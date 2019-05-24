@@ -70,7 +70,6 @@ public class Level {
             game.listRpgObjects.add(new Enemy(game,1000,200));
             game.listRpgObjects.add(new Enemy(game,100,500));
 
-
             int[][] map1 = {
                     {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
                     {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},

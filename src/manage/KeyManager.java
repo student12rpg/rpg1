@@ -9,6 +9,7 @@ public class KeyManager implements KeyListener {
 
     public boolean isUP, isDown, isLeft, isRight;
     public boolean isSpace;
+    public boolean isEsc;
 
     @Override
     public void keyTyped(KeyEvent e) {  }
@@ -31,5 +32,6 @@ public class KeyManager implements KeyListener {
         isUP = keys[KeyEvent.VK_W];
         isDown = keys[KeyEvent.VK_S];
         isSpace = keys[KeyEvent.VK_SPACE];
+        isEsc = keys[KeyEvent.VK_ESCAPE];
     }
 }

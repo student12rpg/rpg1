@@ -7,13 +7,22 @@ import manage.KeyManager;
 import manage.MouseManager;
 import world.Level;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class Game implements Runnable {
+
+	Image imgGame_Over;
+
+	boolean needStart = false;
+
+	public int State = 0; //0 - меню, 1 - игра, 2 - game over
 
 	private Display display;
 
@@ -39,6 +48,8 @@ public class Game implements Runnable {
 	//Tree tree = new Tree(this,100,350);
 	public Level level = new Level(this);
 
+	public Menu menu;
+
 	public PanelInfo panelInfo;
 
 	public int offsetX = 0;
@@ -53,6 +64,14 @@ public class Game implements Runnable {
 		this.width = width;
 		this.height = height;
 		this.title = title;
+
+		try {
+			imgGame_Over = ImageIO.read(new File("images/gameover.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
 	}
 
 	//!!!!!Инициализация
@@ -62,31 +81,57 @@ public class Game implements Runnable {
 		mouseManager = new MouseManager();
 		display.getCanvas().addMouseListener(mouseManager);
 		display.getJFrame().addKeyListener(keyManager);
+		State = 0;
+		menu = new Menu(this);
 
 		panelInfo = new PanelInfo(this);
 	}
 
 	//!!!ОБНОВЛЕНИЕ
 	private void move() {
-		level.move();
-		for (GameObject item : listRpgObjects) {
-			item.move();
+
+		//игровой процесс
+		if (State == 1) {
+			//жизней больше не осталось
+			if (player.life <= 0){
+				needStart = true;
+				State = 2;
+			}
+			else needStart = false;
 		}
 
-		player.move();
-
-		//удаление ненужных объектов
-		for (GameObject item : listRemoveObjects) {
-			listRpgObjects.remove(item);
+		if (keyManager.isEsc){
+			State = 0;
 		}
-		//полная очистка кэша удаляемых объектов
-		listRemoveObjects.clear();
 
-		//проверяем новые пули
-		if (listAddObjects.size()>0) {
-			listRpgObjects.addAll(listAddObjects);
-			listAddObjects.clear();
+		if (State == 0)
+		{
+			menu.move();
 		}
+		else
+		if (State == 1) {
+			level.move();
+			for (GameObject item : listRpgObjects) {
+				item.move();
+			}
+
+			player.move();
+
+			//удаление ненужных объектов
+			for (GameObject item : listRemoveObjects) {
+				listRpgObjects.remove(item);
+			}
+			//полная очистка кэша удаляемых объектов
+			listRemoveObjects.clear();
+
+			//проверяем новые пули
+			if (listAddObjects.size() > 0) {
+				listRpgObjects.addAll(listAddObjects);
+				listAddObjects.clear();
+			}
+		}
+
+
 	}
 
 	//!!ПРОРИСОВКА
@@ -101,17 +146,27 @@ public class Game implements Runnable {
 		//Рисуем!!!
 		///////////////////////////////////////////////////////////////
 		g.clearRect(0, 0, width, height);
-		g.setColor(Color.black);
-		g.fillRect(0,0,width,height);
+		g.setColor(new Color(0,0,153));
+		g.fillRect(0, 0, width, height);
 
-		level.render(g);
-		//tree.render(g);
-		for (GameObject item : listRpgObjects) {
-			item.render(g);
+		if (State == 0){
+			menu.render(g);
 		}
-		player.render(g);
-		panelInfo.render(g);
+		else
+			if (State == 1) {
 
+				level.render(g);
+				//tree.render(g);
+				for (GameObject item : listRpgObjects) {
+					item.render(g);
+				}
+				player.render(g);
+				panelInfo.render(g);
+			}
+		else
+			if (State == 2){
+				g.drawImage(imgGame_Over,0,0, width, height, null);
+			}
 		///////////////////////////////////////////////////////////////
 
 
