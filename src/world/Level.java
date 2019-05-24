@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 public class Level {
 
@@ -104,11 +105,11 @@ public class Level {
             game.player.x = 400;
             game.player.y = 300;
 
+            Random r = new Random();
             //враг
-            game.listRpgObjects.add(new Enemy(game,500,100));
-            game.listRpgObjects.add(new Enemy(game,500,100));
-            game.listRpgObjects.add(new Enemy(game,1000,200));
-            game.listRpgObjects.add(new Enemy(game,100,500));
+            for (int i = 0; i<20; i++) {
+                game.listRpgObjects.add(new Enemy(game, r.nextInt(1000), r.nextInt(1000)));
+            }
 
             game.listRpgObjects.add(new Stove(game,100,400));
             game.listRpgObjects.add(new Stove(game,200,500));
