@@ -11,15 +11,17 @@ import java.io.IOException;
 
 public class Player extends GameObject{
 
-    boolean AnimFlag = false;
-
     int counter = 0;
 
-    int width, height;
+    public double life;
+
     BufferedImage image;
 
     public Player(Game game, int x, int y){
         super(game,x,y); //вызывает конструктор GameObject
+
+        life = 100;
+
         this.width = 64;
         this.height = 64;
 
@@ -35,7 +37,8 @@ public class Player extends GameObject{
     public void move() {
 
         if (game.mouseManager.isPressMouse){
-            game.listRpgObjects.add(new Star(game,x,y));
+           // game.listRpgObjects.add(new Star(game,x,y));
+            game.listAddObjects.add(new Star(game,x,y));
             game.mouseManager.isPressMouse = false;
         }
 
@@ -123,6 +126,12 @@ public class Player extends GameObject{
                 //если комната закрыта - включить свет
                 if (item.id == RpgObjectType.LOSE) {
                     ((Lose)item).isLigth = true;
+                }
+
+                //если совпали с врагом - уменьшаем жизнь
+                if (item.id == RpgObjectType.ENEMY_ZOMBE){
+                    this.life = this.life - 0.2;
+                    System.out.println(life);
                 }
             }
         }

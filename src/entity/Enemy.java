@@ -32,6 +32,11 @@ public class Enemy extends GameObject{
         if (x<game.player.x) x++;
         if (y>game.player.y) y--;
         if (y<game.player.y) y++;
+
+     /*   if (Math.abs(x-game.player.x)>100) {
+            game.listAddObjects.add(new StarEnemy(game,x,y));
+        }
+*/
     }
 
     @Override

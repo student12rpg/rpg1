@@ -31,11 +31,15 @@ public class Game implements Runnable {
 	public MouseManager mouseManager;
 
 	public ArrayList<GameObject> listRpgObjects = new ArrayList<GameObject>();
+
 	public ArrayList<GameObject> listRemoveObjects = new ArrayList<>();
+	public ArrayList<GameObject> listAddObjects = new ArrayList<>();
 
 	public Player player = new Player(this, 300,300);
 	//Tree tree = new Tree(this,100,350);
 	public Level level = new Level(this);
+
+	public PanelInfo panelInfo;
 
 	public int offsetX = 0;
 	public int offsetY = 0;
@@ -59,6 +63,7 @@ public class Game implements Runnable {
 		display.getCanvas().addMouseListener(mouseManager);
 		display.getJFrame().addKeyListener(keyManager);
 
+		panelInfo = new PanelInfo(this);
 	}
 
 	//!!!ОБНОВЛЕНИЕ
@@ -67,6 +72,7 @@ public class Game implements Runnable {
 		for (GameObject item : listRpgObjects) {
 			item.move();
 		}
+
 		player.move();
 
 		//удаление ненужных объектов
@@ -75,6 +81,12 @@ public class Game implements Runnable {
 		}
 		//полная очистка кэша удаляемых объектов
 		listRemoveObjects.clear();
+
+		//проверяем новые пули
+		if (listAddObjects.size()>0) {
+			listRpgObjects.addAll(listAddObjects);
+			listAddObjects.clear();
+		}
 	}
 
 	//!!ПРОРИСОВКА
@@ -98,6 +110,7 @@ public class Game implements Runnable {
 			item.render(g);
 		}
 		player.render(g);
+		panelInfo.render(g);
 
 		///////////////////////////////////////////////////////////////
 
